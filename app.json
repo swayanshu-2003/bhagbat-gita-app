@@ -9,7 +9,14 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.swa2003.bhagvadgita",
+      "appleTeamId": "548YU772ZQ",
+      "supportsTablet": true,
+      "entitlements": {
+        "com.apple.security.application-groups": [
+          "group.com.myapp.widget"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -40,12 +47,14 @@
           }
         }
       ],
-      "@bacons/apple-targets",
-      "react-native-widget-extension"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    }
+      [
+        "react-native-widget-extension",
+        {
+          "widgetsFolder": "widgets",
+          "frequentUpdates": false,
+          "groupIdentifier": "group.com.myapp.widget"
+        }
+      ]
+    ]
   }
 }
