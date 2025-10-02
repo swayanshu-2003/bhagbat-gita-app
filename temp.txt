@@ -1,0 +1,31 @@
+Function("getValue") {
+    if let userDefaults = UserDefaults(suiteName: "group.com.mynobody.myexpo") {
+        let storedValue = userDefaults.integer(forKey: userDefaultsKey)
+        return storedValue
+    } else {
+        return 0
+    }
+}
+
+Function("saveValue") {
+    if let userDefaults = UserDefaults(suiteName: "group.com.mynobody.myexpo") {
+        let currentValue = userDefaults.integer(forKey: userDefaultsKey)
+        let newValue = currentValue + 1
+        userDefaults.set(newValue, forKey: userDefaultsKey)
+        return newValue
+    } else {
+        return 0
+    }
+}
+
+private func getValue() -> String {
+    if let userDefaults = UserDefaults(suiteName: "group.com.mynobody.myexpo") {
+        let storedValue = userDefaults.string(forKey: userDefaultsKey) ?? ""
+        return storedValue
+    } else {
+        return ""
+    }
+}
+
+return Timeline(entries: [SimpleEntry(date: .now, configuration: configuration, value: getValue())], policy: .after(.now.advanced(by: 60 * 5))) // 5 mins
+
